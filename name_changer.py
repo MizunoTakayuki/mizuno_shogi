@@ -18,11 +18,11 @@ def make_imlist(img_dir):
 
 
 if __name__ == "__main__":
-    img_path_list = make_imlist("koma_imgs")
-    for i, path in enumerate(img_path_list):
-        filename = os.path.basename(path)
-        koma_dir = os.path.basename(os.path.dirname(path))
-        trip_num = str(i) + "_"
-        new_filename = koma_dir.replace(trip_num, '') + str(i) + ".png"
-        os.rename(path, os.path.join("koma_imgs", koma_dir, new_filename))
+    for koma_dir in enumerate(os.listdir("koma_imgs")):
+        koma_img_list = make_imlist(koma_dir)
+        for i, path in enumerate(koma_img_list, start=1):
+            filename = os.path.basename(path)
+            trip_num = str(i) + "_"
+            new_filename = filename.replace(trip_num, '') + str(i) + ".png"
+            os.rename(path, os.path.join("koma_imgs", koma_dir, new_filename))
 
